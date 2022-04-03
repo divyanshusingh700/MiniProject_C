@@ -13,12 +13,12 @@
 uint32_t score=0;
 uint8_t scheme=0;
 
-void drawBoard(uint8_t board[SIZE][SIZE]) {
+void drawSheet(uint8_t board[SIZE][SIZE]) {
 	uint8_t x,y;
 	char color[40], reset[] = "\033[m";
 	printf("\033[H");
 
-	printf("2048.c %17d pts\n\n",score);
+	printf("main.c %17d pts\n\n",score);
 
 	for (y=0;y<SIZE;y++) {
 		for (x=0;x<SIZE;x++) {
@@ -255,7 +255,7 @@ void initBoard(uint8_t board[SIZE][SIZE]) {
 	}
 	addRandom(board);
 	addRandom(board);
-	drawBoard(board);
+	drawSheet(board);
 	score = 0;
 }
 
@@ -400,10 +400,10 @@ int main(int argc, char *argv[]) {
 			default: success = false;
 		}
 		if (success) {
-			drawBoard(board);
+			drawSheet(board);
 			usleep(150000);
 			addRandom(board);
-			drawBoard(board);
+			drawSheet(board);
 			if (gameEnded(board)) {
 				printf("         GAME OVER          \n");
 				break;
@@ -415,7 +415,7 @@ int main(int argc, char *argv[]) {
 			if (c=='y') {
 				break;
 			}
-			drawBoard(board);
+			drawSheet(board);
 		}
 		if (c=='r') {
 			printf("       RESTART? (y/n)       \n");
@@ -423,7 +423,7 @@ int main(int argc, char *argv[]) {
 			if (c=='y') {
 				initBoard(board);
 			}
-			drawBoard(board);
+			drawSheet(board);
 		}
 	}
 	setBufferedInput(true);
